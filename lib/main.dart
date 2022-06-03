@@ -2,18 +2,26 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_flixandchill/api/endpoints.dart';
+import 'package:flutter_flixandchill/helper/shared_preference.dart';
 import 'package:flutter_flixandchill/model_class/function.dart';
 import 'package:flutter_flixandchill/model_class/genres.dart';
 import 'package:flutter_flixandchill/model_class/movie.dart';
+import 'package:flutter_flixandchill/model_class/user_model.dart';
 import 'package:flutter_flixandchill/screens/movie_detail.dart';
 import 'package:flutter_flixandchill/screens/search_view.dart';
 import 'package:flutter_flixandchill/screens/settings.dart';
 import 'package:flutter_flixandchill/screens/widgets.dart';
 import 'package:flutter_flixandchill/theme/theme_state.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  initiateLocalDB();
+  SharedPreference().getLoginStatus().then((status) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -140,4 +148,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
+
+void initiateLocalDB() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(UserModelAdapter());
+  await Hive.openBox<UserModel>("data");
 }

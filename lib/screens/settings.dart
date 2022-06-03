@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_flixandchill/screens/login.dart';
+import 'package:flutter_flixandchill/screens/register.dart';
 import 'package:flutter_flixandchill/theme/theme_state.dart';
 import 'package:provider/provider.dart';
 
@@ -29,44 +30,58 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Expanded(
-              //   child: Center(
-              //     child: SingleChildScrollView(
-              //       child: Column(
-              //         mainAxisAlignment: MainAxisAlignment.start,
-              //         crossAxisAlignment: CrossAxisAlignment.start,
-              //         mainAxisSize: MainAxisSize.min,
-              //         children: <Widget>[
-              //           Padding(
-              //             padding: const EdgeInsets.all(16.0),
-              //             child: CircleAvatar(
-              //                 backgroundColor: state.themeData.accentColor,
-              //                 radius: 40,
-              //                 child: Icon(
-              //                   Icons.person_outline,
-              //                   size: 40,
-              //                   color: state.themeData.primaryColor,
-              //                 )),
-              //           ),
-              //           TextButton(
-              //             onPressed: () {
-              //               Navigator.push(
-              //                   context,
-              //                   MaterialPageRoute(
-              //                       builder: (context) => LoginScreen(
-              //                             themeData: state.themeData,
-              //                           )));
-              //             },
-              //             child: Text(
-              //               'Log In / Sign Up',
-              //               style: state.themeData.textTheme.bodyText1,
-              //             ),
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: CircleAvatar(
+                              backgroundColor: state.themeData.accentColor,
+                              radius: 40,
+                              child: Icon(
+                                Icons.person_outline,
+                                size: 40,
+                                color: state.themeData.primaryColor,
+                              )),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage(
+                                          themeData: state.themeData,
+                                        )));
+                          },
+                          child: Text(
+                            'Log In',
+                            style: state.themeData.textTheme.bodyText1,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => RegisterPage(
+                                          themeData: state.themeData,
+                                        )));
+                          },
+                          child: Text(
+                            'Register',
+                            style: state.themeData.textTheme.bodyText1,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               ListTile(
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
